@@ -1,0 +1,9 @@
+Follow-up implementation
+
+This file summarizes the stored follow-up experiment, not a new experimental plan.
+
+The follow-up reduces repeated allocation of dependency annotations within each audit and removes a redundant JSON encoding step. Direct receives the same annotation-reuse optimization. Checks, diagnostic identifiers, failures and serialized outputs are preserved.
+
+Annotations may share storage within one returned result, but not across audit calls or with the compiled plan. Correctness checks compare the revised implementation with the frozen version before performance is reported.
+
+The follow-up uses the same 40 test conditions, six-worker timing design and separate memory measurements. The first run remains in results/final_01; the follow-up is in results/final_02. Slower cases are kept in both sets.

@@ -1,0 +1,11 @@
+Experiment setup
+
+This is a short summary of the archived experiment setup.
+
+FARA and Direct use the same input records, declarations, checks and output requirements. An uncached FARA variant is also included. The 24 interface cases cover MobileNetV2 W/T, ResNet18 W/T and ResNet18 residency.
+
+Scaling tests use 32, 128, 512 and 2,048 records. The changed-record fractions are 0%, 3.125%, 12.5%, 50% and 100%. Valid updates and error-word changes are tested separately. These are software test inputs derived from archived records, not new board measurements.
+
+Complete time includes JSON input, declaration preparation, checks, permitted effect estimates, assurance and output serialization. Imports, test-input generation and disk writes are excluded equally. Timing uses six worker processes with counterbalanced execution orders and paired 95% intervals. Memory is measured separately with tracemalloc, not whole-process memory usage.
+
+Both faster and slower cases are retained. Adapter line counts describe code size, not measured development time.
