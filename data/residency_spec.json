@@ -1,0 +1,333 @@
+{
+  "version": 1,
+  "task": "resnet_R",
+  "fields": {
+    "samples": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "hz": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "tasks": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "c2h": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "outputs": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "block": {
+      "role": "evidence",
+      "type": "int",
+      "causes": []
+    },
+    "cell": {
+      "role": "evidence",
+      "type": "str",
+      "causes": []
+    },
+    "R": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "R"
+      ]
+    },
+    "h2c": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "R"
+      ]
+    },
+    "completed": {
+      "role": "evidence",
+      "type": "int",
+      "causes": []
+    },
+    "errors": {
+      "role": "evidence",
+      "type": "list",
+      "causes": []
+    },
+    "ticks": {
+      "role": "response",
+      "type": "int",
+      "causes": []
+    },
+    "milliseconds": {
+      "role": "response",
+      "type": "number",
+      "causes": []
+    },
+    "result": {
+      "role": "evidence",
+      "type": "int",
+      "causes": []
+    },
+    "reference": {
+      "role": "evidence",
+      "type": "int",
+      "causes": []
+    },
+    "raw_sha256": {
+      "role": "evidence",
+      "type": "str",
+      "causes": []
+    }
+  },
+  "factors": {
+    "R": [
+      0,
+      1
+    ]
+  },
+  "cells": {
+    "streamed": {
+      "R": 0
+    },
+    "cached": {
+      "R": 1
+    }
+  },
+  "blocks": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "laws": [
+    {
+      "id": "GEOMETRY_tasks",
+      "expr": {
+        "eq": [
+          {
+            "field": "tasks"
+          },
+          {
+            "get": [
+              {
+                "const": {
+                  "cached": 3389880,
+                  "streamed": 3389880
+                }
+              },
+              {
+                "field": "cell"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "GEOMETRY_h2c",
+      "expr": {
+        "eq": [
+          {
+            "field": "h2c"
+          },
+          {
+            "get": [
+              {
+                "const": {
+                  "cached": 7687273344,
+                  "streamed": 11849071488
+                }
+              },
+              {
+                "field": "cell"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "GEOMETRY_c2h",
+      "expr": {
+        "eq": [
+          {
+            "field": "c2h"
+          },
+          {
+            "get": [
+              {
+                "const": {
+                  "cached": 47934912,
+                  "streamed": 47934912
+                }
+              },
+              {
+                "field": "cell"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "GEOMETRY_outputs",
+      "expr": {
+        "eq": [
+          {
+            "field": "outputs"
+          },
+          {
+            "get": [
+              {
+                "const": {
+                  "cached": 7454136,
+                  "streamed": 7454136
+                }
+              },
+              {
+                "field": "cell"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "SAMPLES",
+      "expr": {
+        "eq": [
+          {
+            "field": "samples"
+          },
+          {
+            "const": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "COMPLETE",
+      "expr": {
+        "eq": [
+          {
+            "field": "completed"
+          },
+          {
+            "field": "samples"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ERRORS",
+      "expr": {
+        "and": [
+          {
+            "eq": [
+              {
+                "len": [
+                  {
+                    "field": "errors"
+                  }
+                ]
+              },
+              {
+                "const": 4
+              }
+            ]
+          },
+          {
+            "all_zero": [
+              {
+                "field": "errors"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "SEMANTICS",
+      "expr": {
+        "eq": [
+          {
+            "field": "result"
+          },
+          {
+            "field": "reference"
+          }
+        ]
+      }
+    },
+    {
+      "id": "POSITIVE_TIME",
+      "expr": {
+        "gt": [
+          {
+            "field": "ticks"
+          },
+          {
+            "const": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "TIMER",
+      "expr": {
+        "eq": [
+          {
+            "field": "hz"
+          },
+          {
+            "const": 99990005
+          }
+        ]
+      }
+    },
+    {
+      "id": "TIME_UNITS",
+      "expr": {
+        "eq": [
+          {
+            "field": "milliseconds"
+          },
+          {
+            "div": [
+              {
+                "mul": [
+                  {
+                    "div": [
+                      {
+                        "field": "ticks"
+                      },
+                      {
+                        "field": "hz"
+                      }
+                    ]
+                  },
+                  {
+                    "const": 1000
+                  }
+                ]
+              },
+              {
+                "field": "samples"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "assurance": "AUTHOR_DECLARED_NOT_PROVED"
+}

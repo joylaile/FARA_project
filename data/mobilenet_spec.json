@@ -1,0 +1,550 @@
+{
+  "version": 1,
+  "task": "mobilenet_WT",
+  "fields": {
+    "block": {
+      "role": "evidence",
+      "type": "int",
+      "causes": []
+    },
+    "cell": {
+      "role": "evidence",
+      "type": "str",
+      "causes": []
+    },
+    "W": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "W"
+      ]
+    },
+    "T": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "T"
+      ]
+    },
+    "elf": {
+      "role": "controlled",
+      "type": "str",
+      "causes": [
+        "W",
+        "T"
+      ]
+    },
+    "bitstream": {
+      "role": "context",
+      "type": "str",
+      "causes": []
+    },
+    "sample_offset": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "samples": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "completed": {
+      "role": "evidence",
+      "type": "int",
+      "causes": []
+    },
+    "errors": {
+      "role": "evidence",
+      "type": "list",
+      "causes": []
+    },
+    "ticks": {
+      "role": "response",
+      "type": "int",
+      "causes": []
+    },
+    "buckets": {
+      "role": "response",
+      "type": "list",
+      "causes": []
+    },
+    "hz": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "milliseconds": {
+      "role": "response",
+      "type": "number",
+      "causes": []
+    },
+    "raw_sha256": {
+      "role": "evidence",
+      "type": "str",
+      "causes": []
+    },
+    "w_count": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "W"
+      ]
+    },
+    "t_hits": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "T"
+      ]
+    },
+    "t_rebuilds": {
+      "role": "controlled",
+      "type": "int",
+      "causes": [
+        "T"
+      ]
+    },
+    "tasks": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "h2c": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "c2h": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "one": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    },
+    "two": {
+      "role": "context",
+      "type": "int",
+      "causes": []
+    }
+  },
+  "factors": {
+    "W": [
+      0,
+      1
+    ],
+    "T": [
+      0,
+      1
+    ]
+  },
+  "cells": {
+    "scalar": {
+      "W": 0,
+      "T": 0
+    },
+    "request_only": {
+      "W": 1,
+      "T": 0
+    },
+    "joint": {
+      "W": 1,
+      "T": 1
+    },
+    "descriptor_only": {
+      "W": 0,
+      "T": 1
+    }
+  },
+  "blocks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "laws": [
+    {
+      "id": "COUNT_tasks",
+      "expr": {
+        "eq": [
+          {
+            "field": "tasks"
+          },
+          {
+            "const": 1237692
+          }
+        ]
+      }
+    },
+    {
+      "id": "COUNT_h2c",
+      "expr": {
+        "eq": [
+          {
+            "field": "h2c"
+          },
+          {
+            "const": 800020416
+          }
+        ]
+      }
+    },
+    {
+      "id": "COUNT_c2h",
+      "expr": {
+        "eq": [
+          {
+            "field": "c2h"
+          },
+          {
+            "const": 19802592
+          }
+        ]
+      }
+    },
+    {
+      "id": "COUNT_one",
+      "expr": {
+        "eq": [
+          {
+            "field": "one"
+          },
+          {
+            "const": 60
+          }
+        ]
+      }
+    },
+    {
+      "id": "COUNT_two",
+      "expr": {
+        "eq": [
+          {
+            "field": "two"
+          },
+          {
+            "const": 1237632
+          }
+        ]
+      }
+    },
+    {
+      "id": "SAMPLES",
+      "expr": {
+        "eq": [
+          {
+            "field": "samples"
+          },
+          {
+            "const": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "COMPLETE",
+      "expr": {
+        "eq": [
+          {
+            "field": "completed"
+          },
+          {
+            "field": "samples"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ERRORS",
+      "expr": {
+        "and": [
+          {
+            "eq": [
+              {
+                "len": [
+                  {
+                    "field": "errors"
+                  }
+                ]
+              },
+              {
+                "const": 4
+              }
+            ]
+          },
+          {
+            "all_zero": [
+              {
+                "field": "errors"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "INPUT_SLICE",
+      "expr": {
+        "eq": [
+          {
+            "field": "sample_offset"
+          },
+          {
+            "mul": [
+              {
+                "sub": [
+                  {
+                    "field": "block"
+                  },
+                  {
+                    "const": 1
+                  }
+                ]
+              },
+              {
+                "const": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "POSITIVE_TIME",
+      "expr": {
+        "gt": [
+          {
+            "field": "ticks"
+          },
+          {
+            "const": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "TIME_CLOSURE",
+      "expr": {
+        "eq": [
+          {
+            "sum": [
+              {
+                "field": "buckets"
+              }
+            ]
+          },
+          {
+            "field": "ticks"
+          }
+        ]
+      }
+    },
+    {
+      "id": "TIMER",
+      "expr": {
+        "eq": [
+          {
+            "field": "hz"
+          },
+          {
+            "const": 99990005
+          }
+        ]
+      }
+    },
+    {
+      "id": "TIME_UNITS",
+      "expr": {
+        "eq": [
+          {
+            "field": "milliseconds"
+          },
+          {
+            "div": [
+              {
+                "mul": [
+                  {
+                    "div": [
+                      {
+                        "field": "ticks"
+                      },
+                      {
+                        "field": "hz"
+                      }
+                    ]
+                  },
+                  {
+                    "const": 1000
+                  }
+                ]
+              },
+              {
+                "field": "samples"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "RETURN_COUNT",
+      "expr": {
+        "eq": [
+          {
+            "add": [
+              {
+                "field": "one"
+              },
+              {
+                "field": "two"
+              }
+            ]
+          },
+          {
+            "field": "tasks"
+          }
+        ]
+      }
+    },
+    {
+      "id": "RETURN_BYTES",
+      "expr": {
+        "eq": [
+          {
+            "add": [
+              {
+                "mul": [
+                  {
+                    "const": 8
+                  },
+                  {
+                    "field": "one"
+                  }
+                ]
+              },
+              {
+                "mul": [
+                  {
+                    "const": 16
+                  },
+                  {
+                    "field": "two"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "field": "c2h"
+          }
+        ]
+      }
+    },
+    {
+      "id": "W_TREATMENT",
+      "expr": {
+        "eq": [
+          {
+            "field": "w_count"
+          },
+          {
+            "mul": [
+              {
+                "field": "W"
+              },
+              {
+                "const": 1237632
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "T_HITS",
+      "expr": {
+        "eq": [
+          {
+            "field": "t_hits"
+          },
+          {
+            "mul": [
+              {
+                "field": "T"
+              },
+              {
+                "const": 39231
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "T_DECISIONS",
+      "expr": {
+        "eq": [
+          {
+            "add": [
+              {
+                "field": "t_hits"
+              },
+              {
+                "field": "t_rebuilds"
+              }
+            ]
+          },
+          {
+            "const": 40030
+          }
+        ]
+      }
+    },
+    {
+      "id": "BITSTREAM",
+      "expr": {
+        "eq": [
+          {
+            "field": "bitstream"
+          },
+          {
+            "const": "4B2EDB5105C5B361E0C4C73002B21FDADF039BC6DA6AF60766E635A08E856069"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ELF",
+      "expr": {
+        "eq": [
+          {
+            "field": "elf"
+          },
+          {
+            "get": [
+              {
+                "const": {
+                  "scalar": "165DDBDC61DF305695CFBE111A6B8CAD6761C73A9309E1DDFE01700651F7D61B",
+                  "request_only": "DFE62E894B105AC3D8E8C15DAD685588741A241671EA9241F2E3EAA14F948DC1",
+                  "joint": "A452DFC81B77AE1EC83236AEDC21CE55AD09C6E0BC4F4BC379F9736E92C79CAB",
+                  "descriptor_only": "CF029BA9608DC25AD4F55FE88EA2FE0B4616442A221C4A59546BC1BAAE28E769"
+                }
+              },
+              {
+                "field": "cell"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "assurance": "AUTHOR_DECLARED_NOT_PROVED"
+}

@@ -1,0 +1,177 @@
+{
+  "status": "PASS",
+  "scope": "Offline presentation/replay of eight existing interface cases.",
+  "fresh_performance_measurements": 0,
+  "new_hardware_samples": 0,
+  "archived_predicates": 1216,
+  "role_revised_predicates": 1264,
+  "generated_pair_equalities": 48,
+  "distinct_new_evaluations": 1,
+  "complete_diagnostics_retained": 48,
+  "unchanged_archived_effect": {
+    "W_S": {
+      "n": 8,
+      "estimate": 1.557548366268472,
+      "ci95": [
+        1.5575144203009081,
+        1.5575823129758868
+      ]
+    },
+    "T_S": {
+      "n": 8,
+      "estimate": 1.0003951090223575,
+      "ci95": [
+        1.000378351344655,
+        1.0004118669807738
+      ]
+    },
+    "WT_S": {
+      "n": 8,
+      "estimate": 1.5785060914852558,
+      "ci95": [
+        1.5775527725292393,
+        1.579459986534223
+      ]
+    },
+    "WT_W": {
+      "n": 8,
+      "estimate": 1.013455585502615,
+      "ci95": [
+        1.0128530089826184,
+        1.014058520513389
+      ]
+    },
+    "WT_T": {
+      "n": 8,
+      "estimate": 1.577882655811723,
+      "ci95": [
+        1.5769352784698993,
+        1.5788306023105945
+      ]
+    },
+    "interaction": {
+      "n": 8,
+      "estimate": 1.0130553182062445,
+      "ci95": [
+        1.0124561669720717,
+        1.0136548240060892
+      ]
+    },
+    "conditional_T_ms": {
+      "n": 8,
+      "estimate": 53.74742955558423,
+      "ci95": [
+        51.37243765003372,
+        56.12242146113475
+      ]
+    },
+    "conditional_req_ms": {
+      "n": 8,
+      "estimate": 51.611673586774884,
+      "ci95": [
+        49.5458295227507,
+        53.67751765079907
+      ]
+    },
+    "conditional_prep_ms": {
+      "n": 8,
+      "estimate": 2.8284093661828216,
+      "ci95": [
+        2.809661953618044,
+        2.8471567787475993
+      ]
+    },
+    "additive_interaction_ms": {
+      "n": 8,
+      "estimate": 51.257117732250606,
+      "ci95": [
+        48.90106253086455,
+        53.61317293363666
+      ]
+    }
+  },
+  "local_choice": {
+    "status": "PAIRED_LOCAL_CHOICE",
+    "preferred": "WT",
+    "ratio": {
+      "n": 8,
+      "estimate": 1.013455585502615,
+      "ci95": [
+        1.0128530089826184,
+        1.014058520513389
+      ]
+    },
+    "source": "paper-defined reporting rule applied after PASS",
+    "scope": "Original-build archived within-block W/T comparison; no deployment guarantee."
+  },
+  "invalid_failures": [
+    "1/scalar/ERRORS",
+    "1/scalar/GENERATION_TAG"
+  ],
+  "cases": [
+    {
+      "id": "mobilenet/00_archived",
+      "comparison": "PASS",
+      "predicates": 1216,
+      "evaluated": 156,
+      "reused": 1060,
+      "failures": 0
+    },
+    {
+      "id": "mobilenet/01_role",
+      "comparison": "PASS",
+      "predicates": 1264,
+      "evaluated": 1,
+      "reused": 1263,
+      "failures": 0
+    },
+    {
+      "id": "mobilenet/02_response_role",
+      "comparison": "PASS",
+      "predicates": 1216,
+      "evaluated": 0,
+      "reused": 1216,
+      "failures": 0
+    },
+    {
+      "id": "mobilenet/03_expression",
+      "comparison": "PASS",
+      "predicates": 1216,
+      "evaluated": 1,
+      "reused": 1215,
+      "failures": 0
+    },
+    {
+      "id": "mobilenet/04_added_law",
+      "comparison": "PASS",
+      "predicates": 1248,
+      "evaluated": 1,
+      "reused": 1247,
+      "failures": 0
+    },
+    {
+      "id": "mobilenet/05_renamed_field",
+      "comparison": "PASS",
+      "predicates": 1248,
+      "evaluated": 3,
+      "reused": 1245,
+      "failures": 0
+    },
+    {
+      "id": "mobilenet/06_two_failures",
+      "comparison": "REJECT",
+      "predicates": 1248,
+      "evaluated": 2,
+      "reused": 1246,
+      "failures": 2
+    },
+    {
+      "id": "mobilenet/07_recovered_reordered",
+      "comparison": "PASS",
+      "predicates": 1248,
+      "evaluated": 0,
+      "reused": 1248,
+      "failures": 0
+    }
+  ]
+}
